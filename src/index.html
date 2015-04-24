@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="tink.skeleton">
+<html ng-app="tink.app">
 <head>
   <meta charset="utf-8">
   <title>Tink module</title>
@@ -7,15 +7,79 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0">
   <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/tink-core/assets/tink/tink.css" />
   <!-- endbower -->
 </head>
 <body>
 
-<tink-skeleton data-text="Skeleton is working fine!"></tink-skeleton>
-
 <!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/tink-helper-format-angular/dist/tink-helper-format-angular.js"></script>
+<script src="bower_components/tink-helper-safe-apply-angular/dist/tink-helper-safe-apply-angular.js"></script>
 <!-- endbower -->
+<script>
+  var app = angular.module('tink.app',['tink.identitycardnumber']);
+  app.controller('app',function($scope){
+    $scope.showd = function(){
+      console.log($scope.nationalNoModel,$scope.nationalNoForm.nationalNoField);
+    }
+  });
+</script>
+<div class="container" ng-controller="app">
 
-<script src="scripts/directives/skeleton.js"></script>
+  <h1>National number</h1>
+  <hr>
+
+  <section class="panel">
+    <header class="panel-heading">
+      <i class="fa fa-th-large"></i>
+      <span class="panel-title">Belgian national number input field</span>
+    </header>
+    <div class="panel-body">
+      <h3>Example</h3>
+      <p>This input text field is preformatted for the Belgian national number.</p>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 form-group">
+          <tink-identity-number required="required" name="nationalNoField" data-ng-model="nationalNoModel"></tink-national-number>
+        </div>
+    </div>
+      <h3>Validation</h3>
+      <p>Validate the national number using the modulus 97 calculation.</p>
+
+      <form name="nationalNoForm" novalidate>
+        <div class="row form-group" data-ng-class="{'has-error':(nationalNoForm.nationalNoField.$dirty || nationalNoForm.submitted) && nationalNoForm.nationalNoField.$invalid,'has-success': (nationalNoForm.nationalNoField.$dirty || nationalNoForm.submitted) && nationalNoForm.nationalNoField.$valid}">
+          <div class="col-xs-12">
+            <label for="tink-username-example">National number</label>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <div class="validation">
+              <tink-identity-number required="required" name="nationalNoField" data-ng-model="nationalNoModel"></tink-identity-number>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <div class="messages" data-ng-messages="nationalNoForm.nationalNoField.$error" data-ng-if="(nationalNoForm.nationalNoField.$dirty || nationalNoForm.submitted)" >
+              <div class="text-danger" data-ng-message="required">Fill in your national number.</div>
+              <div class="text-danger" data-ng-message="format">Fill in a valid national number.</div>
+            </div>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-xs-12">
+            <button data-ng-click="validateNationalNo()" type="button" class="btn-primary">Validate</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section><button data-ng-click="showd()">show</button>
+</div>
+
+<script src="scripts/directives/tink-identity-card-number-angular.js"></script>
 </body>
 </html>
