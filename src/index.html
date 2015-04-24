@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="tink.skeleton">
+<html ng-app="tink.sorttable">
 <head>
   <meta charset="utf-8">
   <title>Tink module</title>
@@ -7,15 +7,68 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0">
   <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/tink-core/assets/tink/tink.css" />
   <!-- endbower -->
 </head>
-<body>
-
-<tink-skeleton data-text="Skeleton is working fine!"></tink-skeleton>
+<body ng-controller="controller as ctrl">
 
 <!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
 <!-- endbower -->
 
-<script src="scripts/directives/skeleton.js"></script>
+<table tink-sort-header="ctrl.rapporten" class="table-responsive table-interactive">
+       <thead>
+           <tr>
+               <th tink-sort-table="volgnummer">Nummer</th>
+               <th tink-sort-table="familienaam">Naam</th>
+               <th tink-sort-table="voornaam">Voornaam</th>
+               <th>Notities</th>
+               <th>Advies</th>
+               <th></th>
+           </tr>
+       </thead>
+       <tbody>
+           <tr ng-repeat="rapport in ctrl.rapporten.data" class="clickableTableRow">
+               <td>{{ rapport.volgnummer }}</td>
+               <td>{{ rapport.familienaam }}</td>
+               <td>{{ rapport.voornaam }}</td>
+               <td>
+                   <span class="fa-stack fa-1x commentBoxIcon">
+                       <i class="fa fa-comment fa-2x fa-stack-1x"></i>
+                       <strong class="fa-stack-1x fa-stack-text fa-inverse"></strong>
+                   </span>
+               </td>
+               <td><span class="bcsdIcon" ng-class="{questionIcon: rapport.advies.code == 'ONB', checkIcon: rapport.advies.code == 'AKK', crossIcon: rapport.advies.code == 'NAK'}"><i class="fa"></i></span></td>
+               <td><i class="fa fa-angle-right"></i></td>
+           </tr>
+       </tbody>
+   </table>
+
+   <script>
+var module;
+  try {
+    module = angular.module('tink.sorttable');
+  } catch (e) {
+    module = angular.module('tink.sorttable', []);
+  }
+
+module.controller('controller',function($scope){
+  this.rapporten = {data:[{volgnummer:'20',familienaam:'bouillart',voornaam:'vincent'},{volgnummer:'102544',familienaam:'ddfdsf',voornaam:'dd'}]}
+});
+
+</script>
+
+
+<script src="scripts/directives/tinkSortHeader.js"></script>
+<script src="scripts/directives/tinkSortTable.js"></script>
+<script src="scripts/controllers/tinkSortTableController.js"></script>
+
 </body>
 </html>
