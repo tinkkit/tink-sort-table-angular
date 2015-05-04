@@ -1,8 +1,8 @@
 {
-  "name": "tink-identity-card-number-angular",
-  "version": "1.0.0",
+  "name": "tink-sort-table-angular",
+  "version": "1.0.1",
   "main": [
-    "dist/tink-identity-card-number-angular.js"
+    "dist/tink-sort-table-angular.js"
   ],
   "ignore": [
     ".*",
@@ -23,7 +23,6 @@
     "angular-route": "~1.3.12",
     "jquery": "~2.1.3",
     "tink-core": "latest",
-    "tink-helper-format-angular":"latest",
     "tink-helper-safe-apply-angular":"latest"
   },
   "devDependencies": {
