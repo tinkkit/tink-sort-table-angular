@@ -1,6 +1,6 @@
 {
   "name": "tink-sort-table-angular",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "main": [
     "dist/tink-sort-table-angular.js"
   ],
