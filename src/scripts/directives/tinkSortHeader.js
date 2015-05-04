@@ -11,11 +11,11 @@
       restrict:'A',
       link:function(scope,elem,attr,ctrl){
         var action = function(data){
-          console.log('do stuff',data);
+          console.log(data);
           $(elem).removeClass('sort-asc').removeClass('sort-desc');
-          if(data){
+          if(data === 0 || data === false){
             $(elem).addClass('sort-asc');
-          }else{
+          }else if(data === 1 || data === true ){
             $(elem).addClass('sort-desc');
           }
         }
