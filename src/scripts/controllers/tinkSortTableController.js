@@ -18,17 +18,19 @@
       headers[data.prop]={fn:data.fn};
     }
     ctrl.sortHeader = function(prop){
-      if(currentSort.prop === prop){
-        currentSort.order = !currentSort.order;
-      }else{
-        if(currentSort.prop !== null){
-          headers[currentSort.prop].fn(-1);
+      if(dataModel){
+          if(currentSort.prop === prop){
+          currentSort.order = !currentSort.order;
+        }else{
+          if(currentSort.prop !== null){
+            headers[currentSort.prop].fn(-1);
+          }
+          currentSort.order = 1;
+          currentSort.prop = prop;
         }
-        currentSort.order = 1;
-        currentSort.prop = prop;
-      }
-      dataModel.data = dataModel.data.sort(sort_by(currentSort.prop, currentSort.order));
-      headers[prop].fn(currentSort.order);
+        dataModel.data = dataModel.data.sort(sort_by(currentSort.prop, currentSort.order));
+        headers[prop].fn(currentSort.order);
+      }      
     }
 
     function sort_by(field, reverse, primer){

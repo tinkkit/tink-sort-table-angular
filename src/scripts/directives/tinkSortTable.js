@@ -10,7 +10,7 @@
       restrict:'AE',
       controller:'TinkSortTableController',
       scope:{
-        sorter:'='
+        tinkSortTable:'='
       },
       link:function(scope,elem,attr,ctrl){
         if(elem.get(0).tagName !== 'TABLE'){
@@ -23,7 +23,7 @@
             if(_index > -1)  return fetchFromObject(obj[prop.substring(0, _index)], prop.substr(_index+1));
             return obj[prop];
         }
-        ctrl.init(scope.sorter);
+        ctrl.init(scope.tinkSortTable);
         //var rows# = $(elem).get(0).tBodies.length;
         //var head# = $(elem).get(0).tHead.length;
       }

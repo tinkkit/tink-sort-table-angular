@@ -21,14 +21,15 @@
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/tink-helper-safe-apply-angular/dist/tink-helper-safe-apply-angular.js"></script>
 <!-- endbower -->
 
-<table tink-sort-header="ctrl.rapporten" class="table-responsive table-interactive">
+<table tink-sort-table="ctrl.rapporten" class="table-responsive table-interactive">
        <thead>
            <tr>
-               <th tink-sort-table="volgnummer">Nummer</th>
-               <th tink-sort-table="familienaam">Naam</th>
-               <th tink-sort-table="voornaam">Voornaam</th>
+               <th tink-sort-header="volgnummer">Nummer</th>
+               <th tink-sort-header="familienaam">Naam</th>
+               <th tink-sort-header="voornaam">Voornaam</th>
                <th>Notities</th>
                <th>Advies</th>
                <th></th>
