@@ -107,7 +107,7 @@
       }
     };
   }]);
-})();;angular.module('tink.identitycardnumber').run(['$templateCache', function($templateCache) {
+})();;angular.module('tink.sorttable').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('templates/tinkDatePickerField.html',

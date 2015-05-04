@@ -22,7 +22,7 @@ module.exports = function (grunt) {
     dist: 'dist',
     version: currentversion,
     module: require('./package.json').name,
-    domain: 'tink.identitycardnumber'
+    domain: 'tink.sorttable'
   };
 
   // Define the configuration for all the tasks

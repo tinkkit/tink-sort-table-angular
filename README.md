@@ -1,10 +1,10 @@
-# Tink identity card number Angular directive
+# Tink sort table Angular directive
 
 v1.0.1
 
 ## What is this repository for?
 
-The Tink Angular identity card number directive provides you with an input field preformatted for identity card numbers.
+The Tink Angular sort table directive provides you with a table that can be sorted.
 
 Tink is an in-house developed easy-to-use front end framework for quick prototyping and simple deployment of all kinds of websites and apps, keeping a uniform and consistent look and feel.
 
@@ -18,9 +18,9 @@ Tink is an in-house developed easy-to-use front end framework for quick prototyp
 ### Install
 
 1. Go to the root of your project and type the following command in your terminal:
-   `bower install tink-identity-card-number-angular --save`
+   `bower install tink-sort-table-angular --save`
 
-2. Include `dist/tink-identity-card-number-angular.js` and its necessary dependencies in your project.
+2. Include `dist/tink-sort-table-angular.js` and its necessary dependencies in your project.
 
 3. On http://tink.digipolis.be you will find all necessary documentation.
 

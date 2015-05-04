@@ -1,5 +1,5 @@
 'use strict';
-describe('tink-identity-card-number-angular', function() {
+describe('tink-sort-table-angular', function() {
 
   var bodyEl = $('body'), sandboxEl;
   var $compile, $templateCache, scope;
