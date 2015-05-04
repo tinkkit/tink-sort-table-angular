@@ -18,17 +18,19 @@
       headers[data.prop]={fn:data.fn};
     }
     ctrl.sortHeader = function(prop){
-      if(currentSort.prop === prop){
-        currentSort.order = !currentSort.order;
-      }else{
-        if(currentSort.prop !== null){
-          headers[currentSort.prop].fn(-1);
+      if(dataModel){
+          if(currentSort.prop === prop){
+          currentSort.order = !currentSort.order;
+        }else{
+          if(currentSort.prop !== null){
+            headers[currentSort.prop].fn(-1);
+          }
+          currentSort.order = 1;
+          currentSort.prop = prop;
         }
-        currentSort.order = 1;
-        currentSort.prop = prop;
-      }
-      dataModel.data = dataModel.data.sort(sort_by(currentSort.prop, currentSort.order));
-      headers[prop].fn(currentSort.order);
+        dataModel.data = dataModel.data.sort(sort_by(currentSort.prop, currentSort.order));
+        headers[prop].fn(currentSort.order);
+      }      
     }
 
     function sort_by(field, reverse, primer){
@@ -53,26 +55,26 @@
   }
   module.directive('tinkSortHeader',[function(){
     return {
-      require:'^sorter',
+      require:'^tinkSortTable',
       restrict:'A',
       link:function(scope,elem,attr,ctrl){
         var action = function(data){
-          console.log('do stuff',data);
+          console.log(data);
           $(elem).removeClass('sort-asc').removeClass('sort-desc');
-          if(data){
+          if(data === 0 || data === false){
             $(elem).addClass('sort-asc');
-          }else{
+          }else if(data === 1 || data === true ){
             $(elem).addClass('sort-desc');
           }
         }
         $(elem).addClass('pointer');
         $(elem).bind('click',function(){
           scope.$apply(function(){
-            ctrl.sortHeader(attr.headSorter);
+            ctrl.sortHeader(attr.tinkSortHeader);
           })
         })
        
-        ctrl.register({prop:attr.headSorter,fn:action});   
+        ctrl.register({prop:attr.tinkSortHeader,fn:action});   
       }
     };
   }]);
@@ -88,7 +90,7 @@
       restrict:'AE',
       controller:'TinkSortTableController',
       scope:{
-        sorter:'='
+        tinkSortTable:'='
       },
       link:function(scope,elem,attr,ctrl){
         if(elem.get(0).tagName !== 'TABLE'){
@@ -101,7 +103,7 @@
             if(_index > -1)  return fetchFromObject(obj[prop.substring(0, _index)], prop.substr(_index+1));
             return obj[prop];
         }
-        ctrl.init(scope.sorter);
+        ctrl.init(scope.tinkSortTable);
         //var rows# = $(elem).get(0).tBodies.length;
         //var head# = $(elem).get(0).tHead.length;
       }
