@@ -3,9 +3,9 @@
   try {
     module = angular.module('tink.sorttable');
   } catch (e) {
-    module = angular.module('tink.sorttable', []);
+    module = angular.module('tink.sorttable', ['ngLodash']);
   }
-  module.controller('TinkSortTableController',[function(){
+  module.controller('TinkSortTableController',['lodash',function(_){
     var ctrl = this,
     dataModel = null,
     currentSort = {prop:null,order:null},
@@ -17,10 +17,14 @@
     ctrl.register = function(data){
       headers[data.prop]={fn:data.fn};
     };
-    ctrl.sortHeader = function(prop){
+    ctrl.sortHeader = function(prop,type){
       if(dataModel){
           if(currentSort.prop === prop){
-          currentSort.order = !currentSort.order;
+            if(currentSort.order === 1){
+              currentSort.order = -1;
+            }else{
+              currentSort.order = 1;
+            }
         }else{
           if(currentSort.prop !== null){
             headers[currentSort.prop].fn(-1);
@@ -28,21 +32,35 @@
           currentSort.order = 1;
           currentSort.prop = prop;
         }
-        dataModel = dataModel.sort(sortBy(currentSort.prop, currentSort.order));
+        sortData(currentSort.order,prop,dataModel,type);
         headers[prop].fn(currentSort.order);
       }      
     };
 
-    function sortBy(field, reverse, primer){
-       var key = primer ? 
-           function(x) {return primer(x[field]);} : 
-           function(x) {return x[field];};
+    function sortData(order,prop,data,type){
+      if(type === 'date'|| type === 'Date'){
 
-       reverse = !reverse ? 1 : -1;
+      }else{
+        dataModel = dataModel.sort(function(obj1, obj2) {
+          var obj1Val = obj1[prop];
+          var obj2Val = obj2[prop];
 
-       return function (a, b) {
-           return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
-         };
+          if(!_.isString(obj1Val)){
+            obj1Val = obj1Val.toString();
+          }
+
+          if(!_.isString(obj2Val)){
+            obj2Val = obj2Val.toString();
+          }
+
+          if(order){
+            return order*obj1Val.localeCompare(obj2Val);
+          }else{
+            return obj1Val.localeCompare(obj2Val);
+          }
+
+        });
+      }
     }
 
   }]);

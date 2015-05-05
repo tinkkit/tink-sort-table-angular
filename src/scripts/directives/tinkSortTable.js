@@ -3,7 +3,7 @@
   try {
     module = angular.module('tink.sorttable');
   } catch (e) {
-    module = angular.module('tink.sorttable', []);
+    module = angular.module('tink.sorttable', ['ngLodash']);
   }
   module.directive('tinkSortTable',[function(){
     return {

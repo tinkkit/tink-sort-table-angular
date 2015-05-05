@@ -22,6 +22,8 @@
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/tink-helper-safe-apply-angular/dist/tink-helper-safe-apply-angular.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/ng-lodash/build/ng-lodash.js"></script>
 <!-- endbower -->
 
 <table tink-sort-table="ctrl.rapporten.data" class="table-responsive table-interactive">
@@ -57,14 +59,14 @@ var module;
   try {
     module = angular.module('tink.sorttable');
   } catch (e) {
-    module = angular.module('tink.sorttable', []);
+    module = angular.module('tink.sorttable', ['ngLodash']);
   }
 
 module.controller('controller',function($scope){
   var ctrl = this;
 ctrl.rapporten = {};
   $scope.loadData = function(){
-    ctrl.rapporten = {data:[{volgnummer:'20',familienaam:'bouillart',voornaam:'vincent'},{volgnummer:'102544',familienaam:'ddfdsf',voornaam:'dd'}]}
+    ctrl.rapporten = {data:[{volgnummer:'20',familienaam:'bouillart',voornaam:'vincent'},{volgnummer:'102544',familienaam:'ddfdsf',voornaam:'dd'},{volgnummer:'102544',familienaam:'ddfdsf',voornaam:'dd'},{volgnummer:'102544',familienaam:'ta',voornaam:'dd'},{volgnummer:'102544',familienaam:'fb',voornaam:'dd'},{volgnummer:'102544',familienaam:'la',voornaam:'dd'}]}
   }
 });
 

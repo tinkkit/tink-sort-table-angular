@@ -3,7 +3,7 @@
   try {
     module = angular.module('tink.sorttable');
   } catch (e) {
-    module = angular.module('tink.sorttable', []);
+    module = angular.module('tink.sorttable', ['ngLodash']);
   }
   module.directive('tinkSortHeader',[function(){
     return {
@@ -12,16 +12,16 @@
       link:function(scope,elem,attr,ctrl){
         var action = function(data){
           $(elem).removeClass('sort-asc').removeClass('sort-desc');
-          if(data === 0 || data === false){
+          if(data === 1){
             $(elem).addClass('sort-asc');
-          }else if(data === 1 || data === true ){
+          }else if(data === -1 ){
             $(elem).addClass('sort-desc');
           }
         };
         $(elem).addClass('pointer');
         $(elem).bind('click',function(){
           scope.$apply(function(){
-            ctrl.sortHeader(attr.tinkSortHeader);
+            ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);
           });
         });
        
