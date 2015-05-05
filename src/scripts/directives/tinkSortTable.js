@@ -10,7 +10,10 @@
       restrict:'AE',
       controller:'TinkSortTableController',
       scope:{
-        tinkSortTable:'='
+        tinkSortTable:'=',
+        tinkInitSort:'@',
+        tinkSortType:'@',
+        tinkInitSortOrder:'@'
       },
       link:function(scope,elem,attr,ctrl){
         if(elem.get(0).tagName !== 'TABLE'){
@@ -21,6 +24,17 @@
 
         scope.$watch('tinkSortTable',function(){
           ctrl.init(scope.tinkSortTable);
+
+          var order = 1;
+          if(scope.tinkInitSort){
+            if(scope.tinkInitSortOrder){
+              if(scope.tinkInitSortOrder.toLowerCase() === 'desc'){
+                order = -1;
+              }
+            }
+
+            ctrl.sortHeader(scope.tinkInitSort,scope.tinkSortType,order);
+          }
         });
          /*function fetchFromObject(obj, prop){
             if(typeof obj === 'undefined') return false;

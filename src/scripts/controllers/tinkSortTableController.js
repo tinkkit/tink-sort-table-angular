@@ -17,7 +17,7 @@
     ctrl.register = function(data){
       headers[data.prop]={fn:data.fn};
     };
-    ctrl.sortHeader = function(prop,type){
+    ctrl.sortHeader = function(prop,type,order){
       if(dataModel){
           if(currentSort.prop === prop){
             if(currentSort.order === 1){
@@ -32,14 +32,21 @@
           currentSort.order = 1;
           currentSort.prop = prop;
         }
+        if(order){
+          currentSort.order = order;
+        }
         sortData(currentSort.order,prop,dataModel,type);
         headers[prop].fn(currentSort.order);
       }
     };
 
     function sortData(order,prop,data,type){
-      if(type === 'date'|| type === 'Date'){
-
+      if(type && type.toLowerCase() === 'date'){
+            dataModel = dataModel.sort(function(a,b){
+              var obj1Val = a[prop];
+              var obj2Val = b[prop];
+              return order*obj1Val-obj2Val;
+            });
       }else{
         dataModel = dataModel.sort(function(obj1, obj2) {
           var obj1Val = obj1[prop];
@@ -52,12 +59,7 @@
           if(!_.isString(obj2Val)){
             obj2Val = obj2Val.toString();
           }
-
-          if(order){
             return order*obj1Val.localeCompare(obj2Val);
-          }else{
-            return obj1Val.localeCompare(obj2Val);
-          }
 
         });
       }

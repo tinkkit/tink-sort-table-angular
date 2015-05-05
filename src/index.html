@@ -29,7 +29,7 @@
 <table tink-sort-table="ctrl.rapporten.data" class="table-responsive table-interactive">
        <thead>
            <tr>
-               <th tink-sort-header="volgnummer">Nummer</th>
+               <th tink-sort-header="volgnummer" tink-sort-type="date">Nummer</th>
                <th tink-sort-header="familienaam">Naam</th>
                <th tink-sort-header="voornaam">Voornaam</th>
                <th>Notities</th>
@@ -39,7 +39,7 @@
        </thead>
        <tbody>
            <tr ng-repeat="rapport in ctrl.rapporten.data" class="clickableTableRow">
-               <td>{{ rapport.volgnummer }}</td>
+               <td>{{rapport.volgnummer | date:'dd/MM/yyyy'}}</td>
                <td>{{ rapport.familienaam }}</td>
                <td>{{ rapport.voornaam }}</td>
                <td>
@@ -66,7 +66,7 @@ module.controller('controller',function($scope){
   var ctrl = this;
 ctrl.rapporten = {};
   $scope.loadData = function(){
-    ctrl.rapporten = {data:[{volgnummer:'20',familienaam:'bouillart',voornaam:'vincent'},{volgnummer:'102544',familienaam:'ddfdsf',voornaam:'dd'},{volgnummer:'102544',familienaam:'ddfdsf',voornaam:'dd'},{volgnummer:'102544',familienaam:'ta',voornaam:'dd'},{volgnummer:'102544',familienaam:'fb',voornaam:'dd'},{volgnummer:'102544',familienaam:'la',voornaam:'dd'}]}
+    ctrl.rapporten = {data:[{volgnummer:new Date(),familienaam:'bouillart',voornaam:'vincent'},{volgnummer:new Date(2015,06,20),familienaam:'ddfdsf',voornaam:'dd'},{volgnummer:new Date(2015,06,21),familienaam:'jeej works',voornaam:'dd'},{volgnummer:new Date(2015,06,24),familienaam:'ta',voornaam:'dd'},{volgnummer:'102544',familienaam:'fb',voornaam:'dd'},{volgnummer:'102544',familienaam:'la',voornaam:'dd'}]}
   }
 });
 

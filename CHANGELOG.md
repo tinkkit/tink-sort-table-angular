@@ -20,6 +20,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Added 'table-interactive' class by default
+- Added possibility to sort on load
+- Added possibility to sort by date
 
 
 
