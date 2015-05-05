@@ -24,8 +24,8 @@
             ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);
           });
         });
-       
-        ctrl.register({prop:attr.tinkSortHeader,fn:action});   
+
+        ctrl.register({prop:attr.tinkSortHeader,fn:action});
       }
     };
   }]);

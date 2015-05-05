@@ -27,14 +27,14 @@
             }
         }else{
           if(currentSort.prop !== null){
-            headers[currentSort.prop].fn(-1);
+            headers[currentSort.prop].fn(-99);
           }
           currentSort.order = 1;
           currentSort.prop = prop;
         }
         sortData(currentSort.order,prop,dataModel,type);
         headers[prop].fn(currentSort.order);
-      }      
+      }
     };
 
     function sortData(order,prop,data,type){
@@ -90,8 +90,8 @@
             ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);
           });
         });
-       
-        ctrl.register({prop:attr.tinkSortHeader,fn:action});   
+
+        ctrl.register({prop:attr.tinkSortHeader,fn:action});
       }
     };
   }]);
