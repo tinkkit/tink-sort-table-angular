@@ -18,7 +18,6 @@
             $(elem).addClass('sort-desc');
           }
         };
-        $(elem).addClass('pointer');
         $(elem).bind('click',function(){
           scope.$apply(function(){
             ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);

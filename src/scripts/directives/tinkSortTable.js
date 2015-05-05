@@ -17,6 +17,7 @@
           console.warn('sorter has to be set on table !');
           return;
         }
+        $(elem).addClass('table-interactive');
 
         scope.$watch('tinkSortTable',function(){
           ctrl.init(scope.tinkSortTable);
