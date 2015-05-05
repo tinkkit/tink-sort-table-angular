@@ -28,7 +28,7 @@
           currentSort.order = 1;
           currentSort.prop = prop;
         }
-        dataModel.data = dataModel.data.sort(sort_by(currentSort.prop, currentSort.order));
+        dataModel = dataModel.sort(sort_by(currentSort.prop, currentSort.order));
         headers[prop].fn(currentSort.order);
       }      
     }
