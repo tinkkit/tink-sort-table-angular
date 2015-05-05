@@ -61,11 +61,15 @@ var module;
   }
 
 module.controller('controller',function($scope){
-  this.rapporten = {data:[{volgnummer:'20',familienaam:'bouillart',voornaam:'vincent'},{volgnummer:'102544',familienaam:'ddfdsf',voornaam:'dd'}]}
+  var ctrl = this;
+ctrl.rapporten = {};
+  $scope.loadData = function(){
+    ctrl.rapporten = {data:[{volgnummer:'20',familienaam:'bouillart',voornaam:'vincent'},{volgnummer:'102544',familienaam:'ddfdsf',voornaam:'dd'}]}
+  }
 });
 
 </script>
-
+<button ng-click="loadData()">load</button>
 
 <script src="scripts/directives/tinkSortHeader.js"></script>
 <script src="scripts/directives/tinkSortTable.js"></script>
