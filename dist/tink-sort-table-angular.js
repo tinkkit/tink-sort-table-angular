@@ -5,7 +5,7 @@
   } catch (e) {
     module = angular.module('tink.sorttable', []);
   }
-  module.controller('TinkSortTableController',['$scope',function($scope){
+  module.controller('TinkSortTableController',[function(){
     var ctrl = this,
     dataModel = null,
     currentSort = {prop:null,order:null},
@@ -13,10 +13,10 @@
 
     ctrl.init = function(data){
       dataModel = data;
-    }
+    };
     ctrl.register = function(data){
       headers[data.prop]={fn:data.fn};
-    }
+    };
     ctrl.sortHeader = function(prop){
       if(dataModel){
           if(currentSort.prop === prop){
@@ -28,21 +28,21 @@
           currentSort.order = 1;
           currentSort.prop = prop;
         }
-        dataModel = dataModel.sort(sort_by(currentSort.prop, currentSort.order));
+        dataModel = dataModel.sort(sortBy(currentSort.prop, currentSort.order));
         headers[prop].fn(currentSort.order);
       }      
-    }
+    };
 
-    function sort_by(field, reverse, primer){
+    function sortBy(field, reverse, primer){
        var key = primer ? 
-           function(x) {return primer(x[field])} : 
-           function(x) {return x[field]};
+           function(x) {return primer(x[field]);} : 
+           function(x) {return x[field];};
 
        reverse = !reverse ? 1 : -1;
 
        return function (a, b) {
            return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
-         } 
+         };
     }
 
   }]);
@@ -59,20 +59,19 @@
       restrict:'A',
       link:function(scope,elem,attr,ctrl){
         var action = function(data){
-          console.log(data);
           $(elem).removeClass('sort-asc').removeClass('sort-desc');
           if(data === 0 || data === false){
             $(elem).addClass('sort-asc');
           }else if(data === 1 || data === true ){
             $(elem).addClass('sort-desc');
           }
-        }
+        };
         $(elem).addClass('pointer');
         $(elem).bind('click',function(){
           scope.$apply(function(){
             ctrl.sortHeader(attr.tinkSortHeader);
-          })
-        })
+          });
+        });
        
         ctrl.register({prop:attr.tinkSortHeader,fn:action});   
       }
@@ -94,16 +93,19 @@
       },
       link:function(scope,elem,attr,ctrl){
         if(elem.get(0).tagName !== 'TABLE'){
-          console.warn('sorter has to be set on table !')
+          console.warn('sorter has to be set on table !');
           return;
         }
-         function fetchFromObject(obj, prop){
+
+        scope.$watch('tinkSortTable',function(){
+          ctrl.init(scope.tinkSortTable);
+        });
+         /*function fetchFromObject(obj, prop){
             if(typeof obj === 'undefined') return false;
             var _index = prop.indexOf('.')
             if(_index > -1)  return fetchFromObject(obj[prop.substring(0, _index)], prop.substr(_index+1));
             return obj[prop];
-        }
-        ctrl.init(scope.tinkSortTable);
+        }*/
         //var rows# = $(elem).get(0).tBodies.length;
         //var head# = $(elem).get(0).tHead.length;
       }
