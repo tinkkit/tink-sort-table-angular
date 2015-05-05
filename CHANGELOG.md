@@ -16,7 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-## [1.0.2] - 2015-05-05
+## [1.1.0] - 2015-05-05
 
 ### Added
 - Added 'table-interactive' class by default
