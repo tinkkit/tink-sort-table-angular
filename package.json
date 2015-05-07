@@ -1,7 +1,7 @@
 {
   "name": "tink-sort-table-angular",
   "description": "Tink sort table Angular directive",
-  "version": "1.1.1",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "git@github.com:tinkkit/tink-sort-table-angular.git"
