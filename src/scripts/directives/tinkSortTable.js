@@ -13,7 +13,8 @@
         tinkSortTable:'=',
         tinkInitSort:'@',
         tinkSortType:'@',
-        tinkInitSortOrder:'@'
+        tinkInitSortOrder:'@',
+        tinkCallback:'='
       },
       link:function(scope,elem,attr,ctrl){
         if(elem.get(0).tagName !== 'TABLE'){

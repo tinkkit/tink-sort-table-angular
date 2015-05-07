@@ -5,7 +5,7 @@
   } catch (e) {
     module = angular.module('tink.sorttable', ['ngLodash']);
   }
-  module.controller('TinkSortTableController',['lodash',function(_){
+  module.controller('TinkSortTableController',['lodash','$scope',function(_,scope){
     var ctrl = this,
     dataModel = null,
     currentSort = {prop:null,order:null},
@@ -34,6 +34,9 @@
         }
         if(order){
           currentSort.order = order;
+        }
+        if(scope.tinkCallback){
+          scope.tinkCallback(prop,currentSort.order);
         }
         sortData(currentSort.order,prop,dataModel,type);
         headers[prop].fn(currentSort.order);
