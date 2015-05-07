@@ -5,7 +5,7 @@
   } catch (e) {
     module = angular.module('tink.sorttable', ['ngLodash']);
   }
-  module.controller('TinkSortTableController',['lodash',function(_){
+  module.controller('TinkSortTableController',['lodash','$scope',function(_,scope){
     var ctrl = this,
     dataModel = null,
     currentSort = {prop:null,order:null},
@@ -35,6 +35,9 @@
         if(order){
           currentSort.order = order;
         }
+        if(scope.tinkCallback){
+          scope.tinkCallback(prop,currentSort.order);
+        }
         sortData(currentSort.order,prop,dataModel,type);
         headers[prop].fn(currentSort.order);
       }
@@ -45,7 +48,7 @@
             dataModel = dataModel.sort(function(a,b){
               var obj1Val = a[prop];
               var obj2Val = b[prop];
-              return order*obj1Val-obj2Val;
+              return order*(obj1Val-obj2Val);
             });
       }else{
         dataModel = dataModel.sort(function(obj1, obj2) {
@@ -111,7 +114,8 @@
         tinkSortTable:'=',
         tinkInitSort:'@',
         tinkSortType:'@',
-        tinkInitSortOrder:'@'
+        tinkInitSortOrder:'@',
+        tinkCallback:'='
       },
       link:function(scope,elem,attr,ctrl){
         if(elem.get(0).tagName !== 'TABLE'){
