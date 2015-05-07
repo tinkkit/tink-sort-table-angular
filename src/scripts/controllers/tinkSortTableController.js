@@ -48,7 +48,7 @@
             dataModel = dataModel.sort(function(a,b){
               var obj1Val = a[prop];
               var obj2Val = b[prop];
-              return order*obj1Val-obj2Val;
+              return order*(obj1Val-obj2Val);
             });
       }else{
         dataModel = dataModel.sort(function(obj1, obj2) {
