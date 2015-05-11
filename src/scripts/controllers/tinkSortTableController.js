@@ -36,7 +36,7 @@
           currentSort.order = order;
         }
         if(scope.tinkCallback){
-          scope.tinkCallback(prop,currentSort.order);
+          scope.tinkCallback(prop,currentSort.order,type);
         }
         sortData(currentSort.order,prop,dataModel,type);
         headers[prop].fn(currentSort.order);
