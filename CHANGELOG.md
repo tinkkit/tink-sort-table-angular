@@ -14,6 +14,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Security
 -->
 
+## [1.1.3] - 2015-05-12
+
+### Removed
+- Removed Lodash
+
+### Fixed
+- Removed templates that were unnecessarily included
+
+
+
 ## [1.1.2] - 2015-05-12
 
 ### Added
