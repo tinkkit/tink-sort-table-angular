@@ -14,18 +14,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Security
 -->
 
-## [1.1.2] - 2015-05-11
+## [1.1.2] - 2015-05-12
 
 ### Added
 - Added support for type callback
 
-### Added
-- Added 'is-sortable' class on headers
+
 
 ## [1.1.1] - 2015-05-05
 
 ### Added
 - Added 'is-sortable' class on headers
+
+
 
 ## [1.1.0] - 2015-05-05
 
