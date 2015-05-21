@@ -24,21 +24,24 @@
         }
         $(elem).addClass('table-interactive');
 
-        scope.$watch('tinkSortTable',function(){
-          ctrl.init(scope.tinkSortTable);
-          var order = 1;
-          if(scope.tinkInitSort){
-            if(scope.tinkInitSortOrder){
-              if(scope.tinkInitSortOrder.toLowerCase() === 'desc'){
-                order = -1;
+        if(scope.tinkSort !== false && scope.tinkSort !== 'false'){
+            scope.$watch('tinkSortTable',function(){
+            ctrl.init(scope.tinkSortTable);
+            var order = 1;
+            if(scope.tinkInitSort){
+              if(scope.tinkInitSortOrder){
+                if(scope.tinkInitSortOrder.toLowerCase() === 'desc'){
+                  order = -1;
+                }
               }
+              ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);   
+            }else{
+              ctrl.reSort();
             }
-            ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);   
-          }else{
-            ctrl.reSort();
-          }
 
-        });
+          });
+        }
+        
          /*function fetchFromObject(obj, prop){
             if(typeof obj === 'undefined') return false;
             var _index = prop.indexOf('.')
