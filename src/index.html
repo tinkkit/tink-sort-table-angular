@@ -67,9 +67,17 @@ ctrl.rapporten = {};
 $scope.sorted = function(property,order,type){
   console.log('sorted',property,order,type);
 }
+var index = 0;
   $scope.loadData = function(){
     ctrl.rapporten = {data:[{volgnummer:new Date(),familienaam:'bouillart',voornaam:'vincent'},{volgnummer:new Date(2015,06,20),familienaam:'ddfdsf',voornaam:'dd'},{volgnummer:new Date(2015,06,21),familienaam:'jeej works',voornaam:'dd'},{volgnummer:new Date(2015,06,24),familienaam:'ta',voornaam:'dd'},{volgnummer:'102544',familienaam:'fb',voornaam:'dd'},{volgnummer:'102544',familienaam:'la',voornaam:'dd'}]}
+
+    if(index ===1){
+      ctrl.rapporten = {data:[{volgnummer:new Date(),familienaam:'bouillart',voornaam:'vincent'},{volgnummer:new Date(2015,06,20),familienaam:'ddfdsf',voornaam:'dd'},{volgnummer:new Date(2015,06,21),familienaam:'jeej works',voornaam:'dd'}]}
+    }
+  index++;
   }
+
+
 });
 
 </script>
