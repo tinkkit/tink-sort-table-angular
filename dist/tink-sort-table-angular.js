@@ -54,7 +54,9 @@ module.controller('TinkSortTableController',['lodash','$scope',function(_,scope)
           scope.tinkCallback({$property:prop,$order:stringOrder,$type:type});
         }
         currentSort.type = type;
-        sortData(currentSort.order,prop,dataModel,type);
+        if(scope.tinkSort !== false && scope.tinkSort !== 'false'){
+          sortData(currentSort.order,prop,dataModel,type);
+        }
         headers[prop].fn(currentSort.order);
       }
     };
@@ -132,7 +134,8 @@ module.directive('tinkSortHeader',[function(){
         tinkInitSort:'@',
         tinkSortType:'@',
         tinkInitSortOrder:'@',
-        tinkCallback:'&'
+        tinkCallback:'&',
+        tinkSort:'='
       },
       link:function(scope,elem,attr,ctrl){
         if(elem.get(0).tagName !== 'TABLE'){
