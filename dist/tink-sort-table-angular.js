@@ -36,7 +36,13 @@
           currentSort.order = order;
         }
         if(scope.tinkCallback){
-          scope.tinkCallback({$property:prop,$order:currentSort.order,$type:type});
+          var stringOrder = 'asc';
+          if(currentSort.order === 1){
+            stringOrder = 'asc';
+          }else{
+            stringOrder = 'desc';
+          }
+          scope.tinkCallback({$property:prop,$order:stringOrder,$type:type});
         }
         sortData(currentSort.order,prop,dataModel,type);
         headers[prop].fn(currentSort.order);
