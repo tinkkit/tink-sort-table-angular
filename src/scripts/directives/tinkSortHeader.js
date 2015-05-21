@@ -5,7 +5,7 @@
   } catch (e) {
     module = angular.module('tink.sorttable', ['ngLodash']);
   }
-  module.directive('tinkSortHeader',[function(){
+module.directive('tinkSortHeader',[function(){
     return {
       require:'^tinkSortTable',
       restrict:'A',

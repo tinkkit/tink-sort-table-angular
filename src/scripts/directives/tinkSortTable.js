@@ -5,7 +5,7 @@
   } catch (e) {
     module = angular.module('tink.sorttable', ['ngLodash']);
   }
-  module.directive('tinkSortTable',[function(){
+ module.directive('tinkSortTable',[function(){
     return {
       restrict:'AE',
       controller:'TinkSortTableController',
@@ -25,7 +25,6 @@
 
         scope.$watch('tinkSortTable',function(){
           ctrl.init(scope.tinkSortTable);
-
           var order = 1;
           if(scope.tinkInitSort){
             if(scope.tinkInitSortOrder){
@@ -33,9 +32,11 @@
                 order = -1;
               }
             }
-
-            ctrl.sortHeader(scope.tinkInitSort,scope.tinkSortType,order);
+            ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);   
+          }else{
+            ctrl.reSort();
           }
+
         });
          /*function fetchFromObject(obj, prop){
             if(typeof obj === 'undefined') return false;
