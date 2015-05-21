@@ -13,6 +13,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ### Security
 -->
+## [1.1.8] - 2015-05-21
+
+### Added
+- Added sort or not to sort
+
 ## [1.1.7] - 2015-05-21
 
 ### Fixed
