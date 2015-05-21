@@ -5,7 +5,7 @@
   } catch (e) {
     module = angular.module('tink.sorttable', ['ngLodash']);
   }
-  module.controller('TinkSortTableController',['lodash','$scope',function(_,scope){
+module.controller('TinkSortTableController',['lodash','$scope',function(_,scope){
     var ctrl = this,
     dataModel = null,
     currentSort = {prop:null,order:null},
@@ -15,8 +15,17 @@
       dataModel = data;
     };
     ctrl.register = function(data){
+      if(currentSort && data && currentSort.prop === data.prop){
+        data.fn(currentSort.order);
+      }
       headers[data.prop]={fn:data.fn};
     };
+
+    ctrl.reSort = function(){
+      if(currentSort && currentSort.prop !== null){
+        ctrl.sortHeader(currentSort.prop,currentSort.type,currentSort.order)
+      }
+    }
     ctrl.sortHeader = function(prop,type,order){
       if(dataModel){
           if(currentSort.prop === prop){
@@ -44,6 +53,7 @@
           }
           scope.tinkCallback({$property:prop,$order:stringOrder,$type:type});
         }
+        currentSort.type = type;
         sortData(currentSort.order,prop,dataModel,type);
         headers[prop].fn(currentSort.order);
       }
@@ -82,7 +92,7 @@
   } catch (e) {
     module = angular.module('tink.sorttable', ['ngLodash']);
   }
-  module.directive('tinkSortHeader',[function(){
+module.directive('tinkSortHeader',[function(){
     return {
       require:'^tinkSortTable',
       restrict:'A',
@@ -113,7 +123,7 @@
   } catch (e) {
     module = angular.module('tink.sorttable', ['ngLodash']);
   }
-  module.directive('tinkSortTable',[function(){
+ module.directive('tinkSortTable',[function(){
     return {
       restrict:'AE',
       controller:'TinkSortTableController',
@@ -133,7 +143,6 @@
 
         scope.$watch('tinkSortTable',function(){
           ctrl.init(scope.tinkSortTable);
-
           var order = 1;
           if(scope.tinkInitSort){
             if(scope.tinkInitSortOrder){
@@ -141,9 +150,11 @@
                 order = -1;
               }
             }
-
-            ctrl.sortHeader(scope.tinkInitSort,scope.tinkSortType,order);
+            ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);   
+          }else{
+            ctrl.reSort();
           }
+
         });
          /*function fetchFromObject(obj, prop){
             if(typeof obj === 'undefined') return false;
