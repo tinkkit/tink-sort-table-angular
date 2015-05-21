@@ -14,6 +14,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Security
 -->
 
+## [1.1.5] - 2015-05-21
+
+### Changed
+- Changed the way the tinkCallbacks work to the angular Way.
+
+## [1.1.4] - 2015-05-12
+
+### Removed
+- Wrong files
+
 ## [1.1.3] - 2015-05-12
 
 ### Removed
