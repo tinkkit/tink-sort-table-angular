@@ -14,6 +14,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Security
 -->
 
+## [1.1.6] - 2015-05-21
+
+### Changed
+- Changed the order way value returns
+
 ## [1.1.5] - 2015-05-21
 
 ### Changed
