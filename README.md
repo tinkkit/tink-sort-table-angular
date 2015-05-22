@@ -20,7 +20,7 @@ Tink is an in-house developed easy-to-use front end framework for quick prototyp
 1. Go to the root of your project and type the following command in your terminal:
    `bower install tink-sort-table-angular --save`
 
-2. Include `dist/tink-sort-table-angular.js` and its necessary dependencies in your project.
+2. Include `<script src="bower_components/tink-sort-table-angular/dist/tink-sort-table-angular.js"></script>` and its necessary dependencies in your project.
 
 3. On http://tink.digipolis.be you will find all necessary documentation.
 
