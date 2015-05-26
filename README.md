@@ -45,12 +45,12 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
 
 Attr | Type | Default | Details
 --- | --- | --- | ---
-data-tink-sort-table | `` | `` | 
-data-tink-init-sort | `` | `` | .
-data-tink-sort-type| `` | `` | .
-data-tink-init-sort-order | `` | `` | .
-data-tink-callback | `` | `` | .
-data-tink-sort | `` | `` | .
+data-tink-sort-table | `.` | `.` | .
+data-tink-init-sort | `.` | `.` | .
+data-tink-sort-type | `.` | `.` | .
+data-tink-init-sort-order | `.` | `.` | .
+data-tink-callback | `.` | `.` | .
+data-tink-sort | `.` | `.` | .
 
 ###Example
 ```html
