@@ -6,7 +6,7 @@ v1.1.9
 
 The Tink Angular sort table directive provides you with a table that can be sorted.
 
-Tink is an in-house developed easy-to-use front end framework for quick prototyping and simple deployment of all kinds of websites and apps, keeping a uniform and consistent look and feel.
+Tink is an in-house developed easy-to-use front-end framework for quick prototyping and simple deployment of all kinds of websites and apps, keeping a uniform and consistent look and feel.
 
 ## Setup
 
@@ -18,11 +18,45 @@ Tink is an in-house developed easy-to-use front end framework for quick prototyp
 ### Install
 
 1. Go to the root of your project and type the following command in your terminal:
-   `bower install tink-sort-table-angular --save`
 
-2. Include `<script src="bower_components/tink-sort-table-angular/dist/tink-sort-table-angular.js"></script>` and its necessary dependencies in your project.
+  `bower install tink-sort-table-angular --save`
 
-3. On http://tink.digipolis.be you will find all necessary documentation.
+2. Add the following files to your project:
+
+  `<link rel="stylesheet" href="bower_components/tink-core/dist/tink.css" />` (or one of the Tink themes)
+
+  `<script src="bower_components/tink-sort-table-angular/dist/tink-sort-table-angular.js"></script>`
+
+
+----------
+
+
+## How to use
+
+### tink-sort-table
+
+### Component
+
+```html
+<tink-sort-table></tink-sort-table>
+```
+
+### Options
+
+Attr | Type | Default | Details
+--- | --- | --- | ---
+data-tink-sort-table | `` | `` | 
+data-tink-init-sort | `` | `` | .
+data-tink-sort-type| `` | `` | .
+data-tink-init-sort-order | `` | `` | .
+data-tink-callback | `` | `` | .
+data-tink-sort | `` | `` | .
+
+###Example
+```html
+<tink-sort-table ng-model="data" data-tink-sort-table="" data-tink-init-sort="" data-tink-sort-type="" data-tink-init-sort-order="" data-tink-callback="" data-tink-sort="" >
+</tink-sort-table>
+```
 
 ## Contribution guidelines
 
