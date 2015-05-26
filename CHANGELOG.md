@@ -13,6 +13,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ### Security
 -->
+## [1.1.9] - 2015-05-26
+
+### Fixed
+- Fixed infinit looping when changing sort data.
+
 ## [1.1.8] - 2015-05-21
 
 ### Added

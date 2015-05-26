@@ -24,8 +24,8 @@
         }
         $(elem).addClass('table-interactive');
 
-        if(scope.tinkSort !== false && scope.tinkSort !== 'false'){
-            scope.$watch('tinkSortTable',function(){
+
+          scope.$watch('tinkSortTable',function(){
             ctrl.init(scope.tinkSortTable);
             var order = 1;
             if(scope.tinkInitSort){
@@ -34,13 +34,16 @@
                   order = -1;
                 }
               }
-              ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);   
+              if(scope.tinkSort !== false && scope.tinkSort !== 'false'){
+                ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);   
+              }  
             }else{
-              ctrl.reSort();
+              if(scope.tinkSort !== false && scope.tinkSort !== 'false'){
+                ctrl.reSort();
+              }
             }
 
           });
-        }
         
          /*function fetchFromObject(obj, prop){
             if(typeof obj === 'undefined') return false;
