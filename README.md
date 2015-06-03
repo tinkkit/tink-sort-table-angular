@@ -45,17 +45,43 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
 
 Attr | Type | Default | Details
 --- | --- | --- | ---
-data-tink-sort-table | `.` | `.` | .
-data-tink-init-sort | `.` | `.` | .
-data-tink-sort-type | `.` | `.` | .
-data-tink-init-sort-order | `.` | `.` | .
-data-tink-callback | `.` | `.` | .
-data-tink-sort | `.` | `.` | .
+data-tink-sort-table | `Array` | `undefined` | Data that needs to be sorted.
+data-tink-sort-type | `String` | `undefined` | Type of the field string or date.
+data-tink-init-sort | `String` | `undefined` | The value that needs to be sorted at the start.
+data-tink-init-sort-order | `String(asc | desc)` | `Undefined` | Order you want the table sort in from the start.
+data-tink-callback | `Function($property,$order,$type)` | `undefined` | This function will be called when the array needs to be sorted.
+data-tink-sort | `Boolean` | `true` | If false the sorting function needs to be done by user.
+data-tink-sort-header | `String` | `undefined` | you have to place this on each th with proper dataname.
 
 ###Example
 ```html
-<tink-sort-table ng-model="data" data-tink-sort-table="" data-tink-init-sort="" data-tink-sort-type="" data-tink-init-sort-order="" data-tink-callback="" data-tink-sort="" >
-</tink-sort-table>
+<table tink-sort-table="ctrl.rapporten.data" tink-callback="sorted($property,$order,$type)" class="table-responsive table-interactive">
+       <thead>
+           <tr>
+               <th tink-sort-header="volgnummer" tink-sort-type="date">Nummer</th>
+               <th tink-sort-header="familienaam">Naam</th>
+               <th tink-sort-header="voornaam">Voornaam</th>
+               <th>Notities</th>
+               <th>Advies</th>
+               <th></th>
+           </tr>
+       </thead>
+       <tbody>
+           <tr ng-repeat="rapport in ctrl.rapporten.data" class="clickableTableRow">
+               <td>{{rapport.volgnummer | date:'dd/MM/yyyy'}}</td>
+               <td>{{ rapport.familienaam }}</td>
+               <td>{{ rapport.voornaam }}</td>
+               <td>
+                   <span class="fa-stack fa-1x commentBoxIcon">
+                       <i class="fa fa-comment fa-2x fa-stack-1x"></i>
+                       <strong class="fa-stack-1x fa-stack-text fa-inverse"></strong>
+                   </span>
+               </td>
+               <td><span class="bcsdIcon" ng-class="{questionIcon: rapport.advies.code == 'ONB', checkIcon: rapport.advies.code == 'AKK', crossIcon: rapport.advies.code == 'NAK'}"><i class="fa"></i></span></td>
+               <td><i class="fa fa-angle-right"></i></td>
+           </tr>
+       </tbody>
+   </table>
 ```
 
 ## Contribution guidelines
