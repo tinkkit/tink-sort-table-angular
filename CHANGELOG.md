@@ -13,35 +13,55 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ### Security
 -->
+
+## [1.1.10] - 2015-06-04
+
+### Fixed
+- Updated all documentation
+
+
+
 ## [1.1.9] - 2015-05-26
 
 ### Fixed
 - Fixed infinit looping when changing sort data.
+
+
 
 ## [1.1.8] - 2015-05-21
 
 ### Added
 - Added sort or not to sort
 
+
+
 ## [1.1.7] - 2015-05-21
 
 ### Fixed
 - Fixed looping callback
+
+
 
 ## [1.1.6] - 2015-05-21
 
 ### Changed
 - Changed the order way value returns
 
+
+
 ## [1.1.5] - 2015-05-21
 
 ### Changed
 - Changed the way the tinkCallbacks work to the angular Way.
 
+
+
 ## [1.1.4] - 2015-05-12
 
 ### Removed
 - Wrong files
+
+
 
 ## [1.1.3] - 2015-05-12
 
