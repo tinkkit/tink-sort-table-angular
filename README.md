@@ -1,6 +1,6 @@
 # Tink sort table Angular directive
 
-v1.1.10
+v1.1.11
 
 ## What is this repository for?
 
@@ -45,13 +45,13 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
 
 Attr | Type | Default | Details
 --- | --- | --- | ---
-data-tink-sort-table | `Array` | `undefined` | Data that needs to be sorted.
-data-tink-sort-type | `String` | `undefined` | Type of the field string or date.
-data-tink-init-sort | `String` | `undefined` | The value that needs to be sorted at the start.
-data-tink-init-sort-order | `String(asc | desc)` | `Undefined` | Order you want the table sort in from the start.
+data-tink-sort-table | `Array` | `[]` | Data that needs to be sorted.
+data-tink-sort-type | `String` | `''` | Type of the field string or date.
+data-tink-init-sort | `String` | `''` | The value that needs to be sorted at the start.
+data-tink-init-sort-order | `String` | `''` | Order you want the table sort in from the start: 'asc' or 'desc'.
 data-tink-callback | `Function($property,$order,$type)` | `undefined` | This function will be called when the array needs to be sorted.
 data-tink-sort | `Boolean` | `true` | If false the sorting function needs to be done by user.
-data-tink-sort-header | `String` | `undefined` | you have to place this on each th with proper dataname.
+data-tink-sort-header | `String` | `''` | you have to place this on each th with proper dataname.
 
 ###Example
 ```html
