@@ -1,6 +1,6 @@
 # Tink sort table Angular directive
 
-v1.1.11
+v1.1.12
 
 ## What is this repository for?
 
@@ -19,23 +19,27 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
 
 1. Go to the root of your project and type the following command in your terminal:
 
-  `bower install tink-sort-table-angular --save`
+   `bower install tink-sort-table-angular --save`
 
 2. Add the following files to your project:
 
-  `<link rel="stylesheet" href="bower_components/tink-core/dist/tink.css" />` (or one of the Tink themes)
+   `<link rel="stylesheet" href="bower_components/tink-core/dist/tink.css" />` (or one of the Tink themes)
 
-  `<script src="bower_components/tink-sort-table-angular/dist/tink-sort-table-angular.js"></script>`
+   `<script src="bower_components/tink-sort-table-angular/dist/tink-sort-table-angular.js"></script>`
+
+   `<script src="bower_components/tink-helper-safe-apply-angular/dist/tink-helper-safe-apply-angular.js"></script>`
+
+   `<script src="bower_components/ng-lodash/build/ng-lodash.js"></script>`
+
 
 
 ----------
 
 
+
 ## How to use
 
 ### tink-sort-table
-
-### Component
 
 ```html
 <tink-sort-table></tink-sort-table>
@@ -52,37 +56,11 @@ data-tink-init-sort-order | `String` | `''` | Order you want the table sort in f
 data-tink-callback | `Function($property,$order,$type)` | `undefined` | This function will be called when the array needs to be sorted.
 data-tink-sort | `Boolean` | `true` | If false the sorting function needs to be done by user.
 data-tink-sort-header | `String` | `''` | you have to place this on each th with proper dataname.
-
-###Example
-```html
-<table tink-sort-table="ctrl.rapporten.data" tink-callback="sorted($property,$order,$type)" class="table-responsive table-interactive">
-       <thead>
-           <tr>
-               <th tink-sort-header="volgnummer" tink-sort-type="date">Nummer</th>
-               <th tink-sort-header="familienaam">Naam</th>
-               <th tink-sort-header="voornaam">Voornaam</th>
-               <th>Notities</th>
-               <th>Advies</th>
-               <th></th>
-           </tr>
-       </thead>
-       <tbody>
-           <tr ng-repeat="rapport in ctrl.rapporten.data" class="clickableTableRow">
-               <td>{{rapport.volgnummer | date:'dd/MM/yyyy'}}</td>
-               <td>{{ rapport.familienaam }}</td>
-               <td>{{ rapport.voornaam }}</td>
-               <td>
-                   <span class="fa-stack fa-1x commentBoxIcon">
-                       <i class="fa fa-comment fa-2x fa-stack-1x"></i>
-                       <strong class="fa-stack-1x fa-stack-text fa-inverse"></strong>
-                   </span>
-               </td>
-               <td><span class="bcsdIcon" ng-class="{questionIcon: rapport.advies.code == 'ONB', checkIcon: rapport.advies.code == 'AKK', crossIcon: rapport.advies.code == 'NAK'}"><i class="fa"></i></span></td>
-               <td><i class="fa fa-angle-right"></i></td>
-           </tr>
-       </tbody>
-   </table>
 ```
+
+### Example
+
+A working example can be found on [the Tink documentation](http://tink.digipolis.be/#/docs/directives/upload#example).
 
 ## Contribution guidelines
 
