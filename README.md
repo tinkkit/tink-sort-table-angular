@@ -1,6 +1,6 @@
 # Tink sort table Angular directive
 
-v1.1.12
+v1.1.13
 
 ## What is this repository for?
 
@@ -56,11 +56,10 @@ data-tink-init-sort-order | `String` | `''` | Order you want the table sort in f
 data-tink-callback | `Function($property,$order,$type)` | `undefined` | This function will be called when the array needs to be sorted.
 data-tink-sort | `Boolean` | `true` | If false the sorting function needs to be done by user.
 data-tink-sort-header | `String` | `''` | you have to place this on each th with proper dataname.
-```
 
 ### Example
 
-A working example can be found on [the Tink documentation](http://tink.digipolis.be/#/docs/directives/upload#example).
+A working example can be found in [the Tink documentation](http://tink.digipolis.be/#/docs/directives/sort-table#example).
 
 ## Contribution guidelines
 
