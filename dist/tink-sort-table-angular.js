@@ -21,45 +21,32 @@ module.controller('TinkSortTableController',['lodash','$scope',function(_,scope)
       headers[data.prop]={fn:data.fn};
     };
 
-    ctrl.reSort = function(){
-      if(currentSort && currentSort.prop !== null){
-        ctrl.sortHeader(currentSort.prop,currentSort.type,currentSort.order)
+    ctrl.sort = function(property,order){
+      if(currentSort.prop && headers[currentSort.prop]){
+        headers[currentSort.prop].fn(-99);
+      }
+      
+      if(property){
+        
+        if(order !== undefined || order !== null){
+          currentSort.order = order;
+        }else{
+          currentSort.order = true;
+        }
+        currentSort.prop = property;
+        headers[property].fn(currentSort.order);
       }
     }
-    ctrl.sortHeader = function(prop,type,order){
-      if(dataModel){
-          if(currentSort.prop === prop){
-            if(currentSort.order === 1){
-              currentSort.order = -1;
-            }else{
-              currentSort.order = 1;
-            }
-        }else{
-          if(currentSort.prop !== null){
-            headers[currentSort.prop].fn(-99);
-          }
-          currentSort.order = 1;
-          currentSort.prop = prop;
-        }
-        if(order){
-          currentSort.order = order;
-        }
-        if(scope.tinkCallback){
-          var stringOrder = true;
-          if(currentSort.order === 1){
-            stringOrder = true;
-          }else{
-            stringOrder = false;
-          }
-          scope.tinkCallback({$property:prop,$order:stringOrder,$type:type});
-        }
-        currentSort.type = type;
-        if(scope.tinkSort !== false && scope.tinkSort !== 'false' && scope.tinkSort !== null && scope.tinkSort !== undefined){
-          sortData(currentSort.order,prop,dataModel,type);
-        }
-        headers[prop].fn(currentSort.order);
+
+    ctrl.sortClick = function(prop,type){
+      scope.tinkSortField = prop;
+      if(currentSort.prop === prop){
+        scope.tinkAsc = !currentSort.order;
+      }else{
+        scope.tinkAsc = true;
       }
-    };
+      scope.tinkCallback({$property:prop,$order:scope.tinkAsc,$type:type});
+    }
 
     Object.byString = function(o, s) {
         s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
@@ -76,34 +63,6 @@ module.controller('TinkSortTableController',['lodash','$scope',function(_,scope)
         return o;
     }
 
-
-    function sortData(order,prop,data,type){
-      if(type && type.toLowerCase() === 'date'){
-            dataModel = dataModel.sort(function(a,b){
-              var obj1Val = Object.byString(a,prop);
-              var obj2Val = Object.byString(b,prop);
-              return order*(obj1Val-obj2Val);
-            });
-      }else{
-        dataModel = dataModel.sort(function(obj1, obj2) {
-
-
-          var obj1Val = Object.byString(obj1,prop);
-          var obj2Val = Object.byString(obj2,prop);
-
-          if(!_.isString(obj1Val)){
-            obj1Val = obj1Val.toString();
-          }
-
-          if(!_.isString(obj2Val)){
-            obj2Val = obj2Val.toString();
-          }
-            return order*obj1Val.localeCompare(obj2Val);
-
-        });
-      }
-    }
-
   }]);
 })();;'use strict';
 (function(module) {
@@ -117,20 +76,24 @@ module.directive('tinkSortHeader',[function(){
       require:'^tinkSortTable',
       restrict:'A',
       link:function(scope,elem,attr,ctrl){$(elem).addClass('is-sortable');
-        $(elem).addClass('is-sortable');
+        
         var action = function(data){
           $(elem).removeClass('sort-asc').removeClass('sort-desc');
-          if(data === 1){
+          if(data === true){
             $(elem).addClass('sort-asc');
-          }else if(data === -1 ){
+          }else if(data === false){
             $(elem).addClass('sort-desc');
           }
         };
-        $(elem).bind('click',function(){
-          scope.$apply(function(){
-            ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);
+
+        if(attr.tinkSortHeader !== null && attr.tinkSortHeader !== undefined && attr.tinkSortHeader !== ''){
+          $(elem).addClass('is-sortable');
+          $(elem).bind('click',function(){
+            scope.$apply(function(){
+              ctrl.sortClick(attr.tinkSortHeader,attr.tinkSortType);
+            });
           });
-        });
+        }      
 
         ctrl.register({prop:attr.tinkSortHeader,fn:action});
       }
@@ -149,11 +112,9 @@ module.directive('tinkSortHeader',[function(){
       controller:'TinkSortTableController',
       scope:{
         tinkSortTable:'=',
-        tinkInitSort:'@',
-        tinkSortType:'@',
-        tinkInitSortOrder:'@',
         tinkCallback:'&',
-        tinkSort:'='
+        tinkAsc:'=',
+        tinkSortField:'='
       },
       link:function(scope,elem,attr,ctrl){
         if(elem.get(0).tagName !== 'TABLE'){
@@ -163,24 +124,16 @@ module.directive('tinkSortHeader',[function(){
         $(elem).addClass('table-interactive');
 
 
-          scope.$watch('tinkSortTable',function(){
-            ctrl.init(scope.tinkSortTable);
-            var order = 1;
-            if(scope.tinkInitSort){
-              if(scope.tinkInitSortOrder){
-                if(scope.tinkInitSortOrder.toLowerCase() === 'desc'){
-                  order = -1;
-                }
-              }
-              if(scope.tinkSort !== false && scope.tinkSort !== 'false'){
-                ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);   
-              }  
-            }else{
-              if(scope.tinkSort !== false && scope.tinkSort !== 'false'){
-                ctrl.reSort();
-              }
-            }
+        scope.$watch('tinkAsc',function(newV){
+           ctrl.sort(scope.tinkSortField,newV); 
+        });
 
+        scope.$watch('tinkSortField',function(newV){
+           ctrl.sort(newV,scope.tinkAsc); 
+        });
+
+          scope.$watch('tinkSortTable',function(){
+            ctrl.sort(scope.tinkSortField,scope.tinkAsc);
           });
         
          /*function fetchFromObject(obj, prop){

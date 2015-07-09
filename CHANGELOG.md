@@ -14,7 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Security
 -->
 
-## [1.1.15] - 2015-07-09
+## [2.0.0] - 2015-07-09
 
 ### Changed
 - Changed only with callback no more sorting, only styling.
