@@ -25,7 +25,7 @@
 <script src="bower_components/ng-lodash/build/ng-lodash.js"></script>
 <!-- endbower -->
 
-<table tink-sort-table="ctrl.rapporten.data" tink-callback="sorted($property,$order,$type)" class="table-responsive table-interactive">
+<table tink-sort-table="ctrl.rapporten.data" tink-callback="sorted($property,$order,$type)" tink-asc="ctrl.asc" tink-sort-field="ctrl.header" class="table-responsive table-interactive">
        <thead>
            <tr>
                <th tink-sort-header="volgnummer" tink-sort-type="date">Nummer</th>
@@ -64,6 +64,8 @@ var module;
 module.controller('controller',function($scope){
   var ctrl = this;
 ctrl.rapporten = {};
+ctrl.asc=true;
+ctrl.header="voornaam"
 $scope.sorted = function(property,order,type){
   console.log('sorted',property,order,type);
 }

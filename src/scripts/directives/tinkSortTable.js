@@ -11,11 +11,9 @@
       controller:'TinkSortTableController',
       scope:{
         tinkSortTable:'=',
-        tinkInitSort:'@',
-        tinkSortType:'@',
-        tinkInitSortOrder:'@',
         tinkCallback:'&',
-        tinkSort:'='
+        tinkAsc:'=',
+        tinkSortField:'='
       },
       link:function(scope,elem,attr,ctrl){
         if(elem.get(0).tagName !== 'TABLE'){
@@ -25,24 +23,16 @@
         $(elem).addClass('table-interactive');
 
 
-          scope.$watch('tinkSortTable',function(){
-            ctrl.init(scope.tinkSortTable);
-            var order = 1;
-            if(scope.tinkInitSort){
-              if(scope.tinkInitSortOrder){
-                if(scope.tinkInitSortOrder.toLowerCase() === 'desc'){
-                  order = -1;
-                }
-              }
-              if(scope.tinkSort !== false && scope.tinkSort !== 'false'){
-                ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);   
-              }  
-            }else{
-              if(scope.tinkSort !== false && scope.tinkSort !== 'false'){
-                ctrl.reSort();
-              }
-            }
+        scope.$watch('tinkAsc',function(newV){
+           ctrl.sort(scope.tinkSortField,newV); 
+        });
 
+        scope.$watch('tinkSortField',function(newV){
+           ctrl.sort(newV,scope.tinkAsc); 
+        });
+
+          scope.$watch('tinkSortTable',function(){
+            ctrl.sort(scope.tinkSortField,scope.tinkAsc);
           });
         
          /*function fetchFromObject(obj, prop){

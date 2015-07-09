@@ -10,20 +10,24 @@ module.directive('tinkSortHeader',[function(){
       require:'^tinkSortTable',
       restrict:'A',
       link:function(scope,elem,attr,ctrl){$(elem).addClass('is-sortable');
-        $(elem).addClass('is-sortable');
+        
         var action = function(data){
           $(elem).removeClass('sort-asc').removeClass('sort-desc');
-          if(data === 1){
+          if(data === true){
             $(elem).addClass('sort-asc');
-          }else if(data === -1 ){
+          }else if(data === false){
             $(elem).addClass('sort-desc');
           }
         };
-        $(elem).bind('click',function(){
-          scope.$apply(function(){
-            ctrl.sortHeader(attr.tinkSortHeader,attr.tinkSortType);
+
+        if(attr.tinkSortHeader !== null && attr.tinkSortHeader !== undefined && attr.tinkSortHeader !== ''){
+          $(elem).addClass('is-sortable');
+          $(elem).bind('click',function(){
+            scope.$apply(function(){
+              ctrl.sortClick(attr.tinkSortHeader,attr.tinkSortType);
+            });
           });
-        });
+        }      
 
         ctrl.register({prop:attr.tinkSortHeader,fn:action});
       }

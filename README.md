@@ -42,7 +42,25 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
 ### tink-sort-table
 
 ```html
-<tink-sort-table></tink-sort-table>
+<table tink-sort-table="ctrl.rapporten.data" tink-callback="sorted($property,$order)" tink-asc="ctrl.asc" tink-sort-field="ctrl.header" class="table-responsive table-interactive">
+       <thead>
+           <tr>
+               <th tink-sort-header="volgnummer" tink-sort-type="date">Nummer</th>
+               <th tink-sort-header="familienaam">Naam</th>
+               <th tink-sort-header="voornaam">Voornaam</th>
+               <th>Notities</th>
+               <th>Advies</th>
+               <th></th>
+           </tr>
+       </thead>
+       <tbody>
+           <tr ng-repeat="rapport in ctrl.rapporten.data" class="clickableTableRow">
+               <td>{{rapport.volgnummer | date:'dd/MM/yyyy'}}</td>
+               <td>{{ rapport.familienaam }}</td>
+               <td>{{ rapport.voornaam }}</td>
+           </tr>
+       </tbody>
+   </table>
 ```
 
 ### Options
@@ -50,12 +68,10 @@ Tink is an in-house developed easy-to-use front-end framework for quick prototyp
 Attr | Type | Default | Details
 --- | --- | --- | ---
 data-tink-sort-table | `Array` | `[]` | Data that needs to be sorted.
-data-tink-sort-type | `String` | `''` | Type of the field string or date.
-data-tink-init-sort | `String` | `''` | The value that needs to be sorted at the start.
-data-tink-init-sort-order | `String` | `''` | Order you want the table sort in from the start: 'asc' or 'desc'.
-data-tink-callback | `Function($property,$order,$type)` | `undefined` | This function will be called when the array needs to be sorted.
-data-tink-sort | `Boolean` | `true` | If false the sorting function needs to be done by user.
+data-tink-callback | `Function($property,$order)` | `undefined` | This function will be called when the array needs to be sorted.
 data-tink-sort-header | `String` | `''` | you have to place this on each th with proper dataname.
+data-tink-tink-sort-field | `Object` | `undefined` | Required property, the name of the sorted field.
+data-tink-asc | `Boolean` | `undefined` | Required property, Field is asc sorted or not (desc sorted).
 
 ### Example
 
