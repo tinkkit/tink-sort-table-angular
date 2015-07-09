@@ -45,33 +45,51 @@ module.controller('TinkSortTableController',['lodash','$scope',function(_,scope)
           currentSort.order = order;
         }
         if(scope.tinkCallback){
-          var stringOrder = 'asc';
+          var stringOrder = true;
           if(currentSort.order === 1){
-            stringOrder = 'asc';
+            stringOrder = true;
           }else{
-            stringOrder = 'desc';
+            stringOrder = false;
           }
           scope.tinkCallback({$property:prop,$order:stringOrder,$type:type});
         }
         currentSort.type = type;
-        if(scope.tinkSort !== false && scope.tinkSort !== 'false'){
+        if(scope.tinkSort !== false && scope.tinkSort !== 'false' && scope.tinkSort !== null && scope.tinkSort !== undefined){
           sortData(currentSort.order,prop,dataModel,type);
         }
         headers[prop].fn(currentSort.order);
       }
     };
 
+    Object.byString = function(o, s) {
+        s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+        s = s.replace(/^\./, '');           // strip a leading dot
+        var a = s.split('.');
+        for (var i = 0, n = a.length; i < n; ++i) {
+            var k = a[i];
+            if (k in o) {
+                o = o[k];
+            } else {
+                return;
+            }
+        }
+        return o;
+    }
+
+
     function sortData(order,prop,data,type){
       if(type && type.toLowerCase() === 'date'){
             dataModel = dataModel.sort(function(a,b){
-              var obj1Val = a[prop];
-              var obj2Val = b[prop];
+              var obj1Val = Object.byString(a,prop);
+              var obj2Val = Object.byString(b,prop);
               return order*(obj1Val-obj2Val);
             });
       }else{
         dataModel = dataModel.sort(function(obj1, obj2) {
-          var obj1Val = obj1[prop];
-          var obj2Val = obj2[prop];
+
+
+          var obj1Val = Object.byString(obj1,prop);
+          var obj2Val = Object.byString(obj2,prop);
 
           if(!_.isString(obj1Val)){
             obj1Val = obj1Val.toString();
