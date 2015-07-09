@@ -1,6 +1,6 @@
 # Tink sort table Angular directive
 
-v1.1.13
+v1.1.14
 
 ## What is this repository for?
 
