@@ -14,6 +14,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Security
 -->
 
+## [2.0.1] - 2015-07-10
+
+### Changed
+- Changed wait for digest loop to send callback
+
 ## [2.0.0] - 2015-07-09
 
 ### Changed

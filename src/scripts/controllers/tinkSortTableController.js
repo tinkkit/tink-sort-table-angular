@@ -5,7 +5,7 @@
   } catch (e) {
     module = angular.module('tink.sorttable', ['ngLodash']);
   }
-module.controller('TinkSortTableController',['lodash','$scope',function(_,scope){
+module.controller('TinkSortTableController',['lodash','$scope','$timeout',function(_,scope,timeout){
     var ctrl = this,
     dataModel = null,
     currentSort = {prop:null,order:null},
@@ -45,7 +45,10 @@ module.controller('TinkSortTableController',['lodash','$scope',function(_,scope)
       }else{
         scope.tinkAsc = true;
       }
-      scope.tinkCallback({$property:prop,$order:scope.tinkAsc,$type:type});
+      //wait for digest
+      $timeout(function(){
+        scope.tinkCallback({$property:prop,$order:scope.tinkAsc,$type:type});
+      },0);      
     }
 
     Object.byString = function(o, s) {
