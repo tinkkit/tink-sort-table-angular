@@ -46,7 +46,7 @@ module.controller('TinkSortTableController',['lodash','$scope','$timeout',functi
         scope.tinkAsc = true;
       }
       //wait for digest
-      $timeout(function(){
+      timeout(function(){
         scope.tinkCallback({$property:prop,$order:scope.tinkAsc,$type:type});
       },0);      
     }
