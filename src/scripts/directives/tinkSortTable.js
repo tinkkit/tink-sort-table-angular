@@ -9,6 +9,7 @@
     return {
       restrict:'AE',
       controller:'TinkSortTableController',
+      controllerAs:'ctrl',
       scope:{
         tinkSortTable:'=',
         tinkCallback:'&',

@@ -9,7 +9,9 @@ module.directive('tinkSortHeader',[function(){
     return {
       require:'^tinkSortTable',
       restrict:'A',
-      link:function(scope,elem,attr,ctrl){$(elem).addClass('is-sortable');
+      link:function(scope,elem,attr,ctrl){
+
+        $(elem).addClass('is-sortable');
         
         var action = function(data){
           $(elem).removeClass('sort-asc').removeClass('sort-desc');

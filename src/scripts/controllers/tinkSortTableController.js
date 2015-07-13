@@ -14,12 +14,17 @@ module.controller('TinkSortTableController',['lodash','$scope','$timeout',functi
     ctrl.init = function(data){
       dataModel = data;
     };
+    
     ctrl.register = function(data){
       if(currentSort && data && currentSort.prop === data.prop){
         data.fn(currentSort.order);
       }
       headers[data.prop]={fn:data.fn};
     };
+
+    ctrl.getCurrentSort = function(){
+      return angular.copy(currentSort);
+    }
 
     ctrl.sort = function(property,order){
       if(currentSort.prop && headers[currentSort.prop]){
@@ -28,7 +33,7 @@ module.controller('TinkSortTableController',['lodash','$scope','$timeout',functi
       
       if(property){
         
-        if(order !== undefined || order !== null){
+        if(order !== undefined && order !== null){
           currentSort.order = order;
         }else{
           currentSort.order = true;
@@ -36,6 +41,7 @@ module.controller('TinkSortTableController',['lodash','$scope','$timeout',functi
         currentSort.prop = property;
         headers[property].fn(currentSort.order);
       }
+      
     }
 
     ctrl.sortClick = function(prop,type){
