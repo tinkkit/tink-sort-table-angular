@@ -24,7 +24,7 @@ module.controller('TinkSortTableController',['lodash','$scope','$timeout',functi
 
     ctrl.getCurrentSort = function(){
       return angular.copy(currentSort);
-    }
+    };
 
     ctrl.sort = function(property,order){
       if(currentSort.prop && headers[currentSort.prop]){
@@ -38,11 +38,13 @@ module.controller('TinkSortTableController',['lodash','$scope','$timeout',functi
         }else{
           currentSort.order = true;
         }
-        currentSort.prop = property;
-        headers[property].fn(currentSort.order);
+        if(headers[property]){
+          currentSort.prop = property;
+          headers[property].fn(currentSort.order);
+        }        
       }
       
-    }
+    };
 
     ctrl.sortClick = function(prop,type){
       scope.tinkSortField = prop;
@@ -55,7 +57,7 @@ module.controller('TinkSortTableController',['lodash','$scope','$timeout',functi
       timeout(function(){
         scope.tinkCallback({$property:prop,$order:scope.tinkAsc,$type:type});
       },0);      
-    }
+    };
 
     Object.byString = function(o, s) {
         s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
@@ -70,7 +72,7 @@ module.controller('TinkSortTableController',['lodash','$scope','$timeout',functi
             }
         }
         return o;
-    }
+    };
 
   }]);
 })();

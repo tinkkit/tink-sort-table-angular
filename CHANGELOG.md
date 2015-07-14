@@ -13,6 +13,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ### Security
 -->
+## [2.0.2] - 2015-07-14
+
+### Changed
+- Added Error handeling for empty headers
 
 ## [2.0.1] - 2015-07-10
 

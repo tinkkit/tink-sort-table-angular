@@ -14,11 +14,16 @@ module.controller('TinkSortTableController',['lodash','$scope','$timeout',functi
     ctrl.init = function(data){
       dataModel = data;
     };
+    
     ctrl.register = function(data){
       if(currentSort && data && currentSort.prop === data.prop){
         data.fn(currentSort.order);
       }
       headers[data.prop]={fn:data.fn};
+    };
+
+    ctrl.getCurrentSort = function(){
+      return angular.copy(currentSort);
     };
 
     ctrl.sort = function(property,order){
@@ -28,15 +33,18 @@ module.controller('TinkSortTableController',['lodash','$scope','$timeout',functi
       
       if(property){
         
-        if(order !== undefined || order !== null){
+        if(order !== undefined && order !== null){
           currentSort.order = order;
         }else{
           currentSort.order = true;
         }
-        currentSort.prop = property;
-        headers[property].fn(currentSort.order);
+        if(headers[property]){
+          currentSort.prop = property;
+          headers[property].fn(currentSort.order);
+        }        
       }
-    }
+      
+    };
 
     ctrl.sortClick = function(prop,type){
       scope.tinkSortField = prop;
@@ -49,7 +57,7 @@ module.controller('TinkSortTableController',['lodash','$scope','$timeout',functi
       timeout(function(){
         scope.tinkCallback({$property:prop,$order:scope.tinkAsc,$type:type});
       },0);      
-    }
+    };
 
     Object.byString = function(o, s) {
         s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
@@ -64,7 +72,7 @@ module.controller('TinkSortTableController',['lodash','$scope','$timeout',functi
             }
         }
         return o;
-    }
+    };
 
   }]);
 })();;'use strict';
@@ -78,7 +86,9 @@ module.directive('tinkSortHeader',[function(){
     return {
       require:'^tinkSortTable',
       restrict:'A',
-      link:function(scope,elem,attr,ctrl){$(elem).addClass('is-sortable');
+      link:function(scope,elem,attr,ctrl){
+
+        $(elem).addClass('is-sortable');
         
         var action = function(data){
           $(elem).removeClass('sort-asc').removeClass('sort-desc');
@@ -113,6 +123,7 @@ module.directive('tinkSortHeader',[function(){
     return {
       restrict:'AE',
       controller:'TinkSortTableController',
+      controllerAs:'ctrl',
       scope:{
         tinkSortTable:'=',
         tinkCallback:'&',
