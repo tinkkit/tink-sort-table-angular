@@ -57,7 +57,6 @@ describe('sortable', function() {
     expect(tinkSortTableController.getCurrentSort().prop).toBe(data.prop);
     expect(tinkSortTableController.getCurrentSort().order).toBe(true);
     expect(data.fn).toHaveBeenCalled();
-
   });
 
   it('test sort function x2', function () {
