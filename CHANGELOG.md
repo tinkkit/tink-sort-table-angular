@@ -13,30 +13,49 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ### Security
 -->
+
+## [2.0.4] - 2015-10-05
+
+### Fixed
+- Fixed an issue where table headers would always be styled as sortable
+
+
+
 ## [2.0.3] - 2015-07-29
 
 ### Changed
 - Changed angular version to 1.4.3
 
+
+
 ## [2.0.2] - 2015-07-14
 
 ### Changed
-- Added Error handeling for empty headers
+- Added error handeling for empty headers
+
+
 
 ## [2.0.1] - 2015-07-10
 
 ### Changed
 - Changed wait for digest loop to send callback
 
+
+
 ## [2.0.0] - 2015-07-09
 
 ### Changed
 - Changed only with callback no more sorting, only styling.
 
+
+
+
+
 ## [1.1.14] - 2015-07-09
 
 ### Fixed
 - Fixed just using callback witouth sorting
+
 
 
 ## [1.1.13] - 2015-06-10
