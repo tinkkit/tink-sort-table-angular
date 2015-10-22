@@ -22,7 +22,7 @@ module.directive('tinkSortHeader',[function(){
           }
         };
 
-        if(attr.tinkSortHeader !== null && attr.tinkSortHeader !== undefined && attr.tinkSortHeader !== ''){
+        if(attr.tinkSortHeader !== null && attr.tinkSortHeader !== undefined && attr.tinkSortHeader !== '' && attr.tinkSortActive !== "false"){
           $(elem).addClass('is-sortable');
           $(elem).bind('click',function(){
             scope.$apply(function(){
