@@ -14,6 +14,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Security
 -->
 
+## [2.0.5] - 2015-10-22
+
+### Added
+- Added the option to disable the filtering on a field.
+
 ## [2.0.4] - 2015-10-05
 
 ### Fixed

@@ -72,7 +72,7 @@ data-tink-callback | `Function($property,$order)` | `undefined` | This function 
 data-tink-sort-header | `String` | `''` | you have to place this on each th with proper dataname.
 data-tink-tink-sort-field | `Object` | `undefined` | Required property, the name of the sorted field.
 data-tink-asc | `Boolean` | `undefined` | Required property, Field is asc sorted or not (desc sorted).
-
+data-tink-sort-active | `Boolean` | `undefined` | If false the field wil not be able to sort.
 ### Example
 
 A working example can be found in [the Tink documentation](http://tink.digipolis.be/#/docs/directives/sort-table#example).
