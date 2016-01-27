@@ -1,6 +1,6 @@
 # Tink skeleton Angular directive
 
-v1.0.0
+v0.1.0
 
 ## What is this repository for?
 
@@ -18,9 +18,9 @@ Tink is an in-house developed easy-to-use front end framework for quick prototyp
 ### Install
 
 1. Go to the root of your project and type the following command in your terminal:
-   `bower install tink-back-to-top-angular --save`
+   `bower install tink-skeleton-angular --save`
 
-2. Include `dist/tink-back-to-top-angular.js` and its necessary dependencies in your project.
+2. Include `dist/tink-skeleton-angular.js` and its necessary dependencies in your project.
 
 3. On http://tink.digipolis.be you will find all necessary documentation.
 

@@ -26,3 +26,11 @@
     };
   }]);
 })();
+;angular.module('tink.skeleton').run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('templates/skeleton.html',
+    "<h1 class=\"h3 text-center\">{{text}}</h1>"
+  );
+
+}]);
