@@ -48,10 +48,10 @@ module.exports = function(config) {
     // - Firefox
     // - Opera
     // - Safari (only Mac)
-    // - PhantomJS
+    // - PhantomJS2
     // - IE (only Windows)
     browsers: [
-      'PhantomJS'
+      'PhantomJS2'
     ],
     preprocessors:{
       'src/templates/{,*/}*.html': 'html2js'
@@ -65,7 +65,7 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       'karma-jasmine',
-      'karma-phantomjs-launcher',
+      'karma-phantomjs2-launcher',
       'karma-chrome-launcher',
       'karma-sauce-launcher',
       'karma-coverage',

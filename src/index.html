@@ -37,7 +37,7 @@
            </tr>
        </thead>
        <tbody>
-           <tr ng-repeat="rapport in ctrl.rapporten.data" class="clickableTableRow">
+           <tr ng-repeat="rapport in ctrl.rapporten.data | orderBy:ctrl.header : ctrl.asc" class="clickableTableRow">
                <td>{{rapport.volgnummer | date:'dd/MM/yyyy'}}</td>
                <td>{{ rapport.familienaam }}</td>
                <td>{{ rapport.voornaam }}</td>
@@ -63,20 +63,24 @@ var module;
 
 module.controller('controller',function($scope){
   var ctrl = this;
-ctrl.rapporten = {};
-ctrl.asc=true;
-ctrl.header="voornaamf"
-$scope.sorted = function(property,order,type){
-  console.log('sorted',property,order,type);
-}
-var index = 0;
-  $scope.loadData = function(){
-    ctrl.rapporten = {data:[{volgnummer:new Date(),familienaam:'bouillart',voornaam:'vincent'},{volgnummer:new Date(2015,06,20),familienaam:'ddfdsf',voornaam:'dd'},{volgnummer:new Date(2015,06,21),familienaam:'jeej works',voornaam:'dd'},{volgnummer:new Date(2015,06,24),familienaam:'ta',voornaam:'dd'},{volgnummer:'102544',familienaam:'fb',voornaam:'dd'},{volgnummer:'102544',familienaam:'la',voornaam:'dd'}]}
+  ctrl.rapporten = {};
+  ctrl.asc=true;
+  ctrl.header="voornaam";
 
-    if(index ===1){
-      ctrl.rapporten = {data:[{volgnummer:new Date(),familienaam:'bouillart',voornaam:'vincent'},{volgnummer:new Date(2015,06,20),familienaam:'ddfdsf',voornaam:'dd'},{volgnummer:new Date(2015,06,21),familienaam:'jeej works',voornaam:'dd'}]}
-    }
-  index++;
+  $scope.sorted = function(property,order,type){
+    console.log('sorted',property,order,type);
+    ctrl.header = property;
+    ctrl.asc = order;
+    console.log(ctrl.header, ctrl.asc);
+  }
+  var index = 0;
+    $scope.loadData = function(){
+      ctrl.rapporten = {data:[{volgnummer:new Date(),familienaam:'bouillart',voornaam:'vincent'},{volgnummer:new Date(2015,06,20),familienaam:'ddfdsf',voornaam:'dd'},{volgnummer:new Date(2015,06,21),familienaam:'jeej works',voornaam:'dd'},{volgnummer:new Date(2015,06,24),familienaam:'ta',voornaam:'dd'},{volgnummer:'102544',familienaam:'fb',voornaam:'dd'},{volgnummer:'102544',familienaam:'la',voornaam:'dd'}]}
+
+      if(index ===1){
+        ctrl.rapporten = {data:[{volgnummer:new Date(),familienaam:'bouillart',voornaam:'vincent'},{volgnummer:new Date(2015,06,20),familienaam:'ddfdsf',voornaam:'dd'},{volgnummer:new Date(2015,06,21),familienaam:'jeej works',voornaam:'dd'}]}
+      }
+    index++;
   }
 
 
